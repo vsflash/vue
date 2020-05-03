@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/XSL/Transform" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 24px;
+        }
+
+        .bind {
+            color: red
+        }
+
+        h5 {
+            color: #40b480
+        }
+
+        .grey {
+            background-color: grey;
+        }
+
+        h6 {
+            font-weight: 400;
+            color: #79b392
+        }
+
+        code {
+            background-color: #f3f3f3;
+            font-style: italic;
+        }
+
+        button {
+            font-size: 20px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+        }
+
+        #hw li {
+            color: #fff
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .workMain {
+            display: flex;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .film-title {
+            margin: 20px;
+        }
+
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-3" id="jsOnly">
+
+    <h2>Films Tabs</h2>
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="navTabs">
+
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="panesTab">
+
+    </div>
+
+    <div>
+        <button onclick="changeColor('blue')">blue</button>
+        <button onclick="changeColor('red')">red</button>
+        <button onclick="changeColor('green')">green</button>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

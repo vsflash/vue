@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/XSL/Transform" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-size: 24px;
+        }
+
+        .bind {
+            color: red
+        }
+
+        h5 {
+            color: #40b480
+        }
+
+        .grey {
+            background-color: grey;
+        }
+
+        h6 {
+            font-weight: 400;
+            color: #79b392
+        }
+
+        code {
+            background-color: #f3f3f3;
+            font-style: italic;
+        }
+
+        button {
+            font-size: 20px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+        }
+
+        #hw li {
+            color: #fff
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .workMain {
+            display: flex;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .film-title {
+            margin: 20px;
+        }
+
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+<body>
+<!---------------Version-1-------------------->
+<!--<div id="classWork">-->
+<!--    <div class="workMain">-->
+<!--        <template v-for="film in films">-->
+<!--            <button class="film-title" v-on:click="film.isHidden = !film.isHidden">-->
+<!--                {{ film.title }}-->
+<!--            </button>-->
+<!--        </template>-->
+<!--    </div>-->
+
+<!--    <ul v-bind:class="bindClass2">-->
+<!--        <template v-for="film in films">-->
+<!--            <ul v-show="!film.isHidden">-->
+<!--                <li v-bind:class="film.isHidden"-->
+<!--                    v-for="actor in film.actors">{{ actor }}-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </template>-->
+<!--    </ul>-->
+
+<!--    <div>-->
+<!--        <button v-on:click="bindClass2='blue'">blue</button>-->
+<!--        <button v-on:click="bindClass2='red'">red</button>-->
+<!--        <button v-on:click="bindClass2='green'">green</button>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!---------------Version-2-------------------->
+<div class="container mt-3" id="classWork">
+    <h2>Films Tabs</h2>
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <template v-for="film in films">
+            <li class="nav-item">
+                <a class="nav-link"
+                   data-toggle="tab"
+                   v-bind:class="film.active"
+                   v-bind:href="'#' + film.id">
+                    {{ film.title }}
+                </a>
+            </li>
+        </template>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content" v-bind:class="bindClass2">
+        <template v-for="film in films">
+            <div v-bind:id="film.id"
+                 v-bind:class="film.active" class="container tab-pane"><br>
+                <template v-for="actor in film.actors">
+                    <p>{{ actor }}</p>
+                </template>
+            </div>
+        </template>
+    </div>
+    <div>
+        <button v-on:click="bindClass2='blue'">blue</button>
+        <button v-on:click="bindClass2='red'">red</button>
+        <button v-on:click="bindClass2='green'">green</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
