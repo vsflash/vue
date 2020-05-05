@@ -4,10 +4,11 @@ let classWork = new Vue({
         bindClass2: 'grey',
         lecture: true,
         isHidden: true,
+        activeId: 1,
         films: [
             {
                 id: 1,
-                active: 'active',
+                active: true,
                 title: 'Film1',
                 actors: [
                     'actors1',
@@ -17,7 +18,7 @@ let classWork = new Vue({
             },
             {
                 id: 2,
-                active: '',
+                active: false,
                 title: 'Film2',
                 actors: [
                     'actors4',
@@ -27,7 +28,7 @@ let classWork = new Vue({
             },
             {
                 id: 3,
-                active: '',
+                active: false,
                 title:'Film3',
                 actors: [
                     'actors7',

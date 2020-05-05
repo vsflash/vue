@@ -73,67 +73,67 @@
 </head>
 <body>
 <!---------------Version-1-------------------->
-<!--<div id="classWork">-->
-<!--    <div class="workMain">-->
-<!--        <template v-for="film in films">-->
-<!--            <button class="film-title" v-on:click="film.isHidden = !film.isHidden">-->
-<!--                {{ film.title }}-->
-<!--            </button>-->
-<!--        </template>-->
-<!--    </div>-->
-
-<!--    <ul v-bind:class="bindClass2">-->
-<!--        <template v-for="film in films">-->
-<!--            <ul v-show="!film.isHidden">-->
-<!--                <li v-bind:class="film.isHidden"-->
-<!--                    v-for="actor in film.actors">{{ actor }}-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </template>-->
-<!--    </ul>-->
-
-<!--    <div>-->
-<!--        <button v-on:click="bindClass2='blue'">blue</button>-->
-<!--        <button v-on:click="bindClass2='red'">red</button>-->
-<!--        <button v-on:click="bindClass2='green'">green</button>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!---------------Version-2-------------------->
-<div class="container mt-3" id="classWork">
-    <h2>Films Tabs</h2>
-    <br>
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
+<div id="classWork">
+    <div class="workMain">
         <template v-for="film in films">
-            <li class="nav-item">
-                <a class="nav-link"
-                   data-toggle="tab"
-                   v-bind:class="film.active"
-                   v-bind:href="'#' + film.id">
-                    {{ film.title }}
-                </a>
-            </li>
+            <button class="film-title" v-on:click="activeId = film.id">
+                {{ film.title }}
+            </button>
+        </template>
+    </div>
+
+    <ul v-bind:class="bindClass2">
+        <template v-for="film in films">
+            <ul v-show="film.id == activeId">
+                <li v-bind:class="film.isHidden"
+                    v-for="actor in film.actors">{{ actor }}
+                </li>
+            </ul>
         </template>
     </ul>
 
-    <!-- Tab panes -->
-    <div class="tab-content" v-bind:class="bindClass2">
-        <template v-for="film in films">
-            <div v-bind:id="film.id"
-                 v-bind:class="film.active" class="container tab-pane"><br>
-                <template v-for="actor in film.actors">
-                    <p>{{ actor }}</p>
-                </template>
-            </div>
-        </template>
-    </div>
     <div>
         <button v-on:click="bindClass2='blue'">blue</button>
         <button v-on:click="bindClass2='red'">red</button>
         <button v-on:click="bindClass2='green'">green</button>
     </div>
 </div>
+
+<!---------------Version-2-------------------->
+<!--<div class="container mt-3" id="classWork">-->
+<!--    <h2>Films Tabs</h2>-->
+<!--    <br>-->
+<!--    &lt;!&ndash; Nav tabs &ndash;&gt;-->
+<!--    <ul class="nav nav-tabs">-->
+<!--        <template v-for="film in films">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link"-->
+<!--                   data-toggle="tab"-->
+<!--                   v-bind:class="film.active"-->
+<!--                   v-bind:href="'#' + film.id">-->
+<!--                    {{ film.title }}-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </template>-->
+<!--    </ul>-->
+
+<!--    &lt;!&ndash; Tab panes &ndash;&gt;-->
+<!--    <div class="tab-content" v-bind:class="bindClass2">-->
+<!--        <template v-for="film in films">-->
+<!--            <div v-bind:id="film.id"-->
+<!--                 v-bind:class="film.active" class="container tab-pane"><br>-->
+<!--                <template v-for="actor in film.actors">-->
+<!--                    <p>{{ actor }}</p>-->
+<!--                </template>-->
+<!--            </div>-->
+<!--        </template>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button v-on:click="bindClass2='blue'">blue</button>-->
+<!--        <button v-on:click="bindClass2='red'">red</button>-->
+<!--        <button v-on:click="bindClass2='green'">green</button>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="main.js"></script>
