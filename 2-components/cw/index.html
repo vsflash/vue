@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>the beginning</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    body {
+      padding: 15px;
+    }
+    h5 {
+      color: #40b480
+    }
+    h6 {
+      font-weight: 400;
+      color: #79b392
+    }
+    code {
+      background-color: #f3f3f3;
+      font-style: italic;
+    }
+    .flex {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <div class="flex">
+      <Card v-for="news in newsArr"
+            :key="'news_' + news.id"
+            :news="news"
+      ></Card>
+    </div>
+
+    <h5>Интерполяция</h5>
+    <div>{{ loremText }}</div>
+    <br>
+    <hr>
+    <br>
+
+    <h5>js выражения</h5>
+    <div>{{ num + 11 }}</div>
+    <div
+            :class="{'additional': num < 10, 'secondAdd': false}"
+            :style="{'color': num === 5 ? 'red' : 'green'}"
+    >
+      {{num > 10 ? num : 'sorry but num isn\'t enough to display'}}
+    </div>
+    <br>
+    <hr><br>
+
+    <!-- Директивы
+      v-bind - связывание атрибутов тегов / передача данных в компонент (props);
+      v-model - двусторонняя привязка элементов формы;
+      v-for - цикличная отрисовка элементов на основе переданных данных;
+      v-if, v-else, v-else-if, v-show - отображают элемент если передаваемое выражение истинно;
+      v-on - подписчик на события;
+      v-once - один раз отрисовывает компонент, после чего он становится статичным;
+      v-text, v-html - то же что и innerHTML, innerText;
+      v-pre - Vue пропустит компиляцию для элемента;
+      v-clock - скрывает не скомпилированный шаблон пока экземпляр Vue не будет готов.
+-->
+
+    <h5>Вставка html (сырой html)</h5>
+    <div v-html="textWithHtml"></div>
+    <br>
+    <hr><br>
+
+    <h5>динамические аргументы</h5>
+    <div :[attr.name]="attr.val">Tab-1</div>
+    <br>
+    <hr><br>
+
+    <h5>Модификаторы</h5>
+    <form @submit.prevent="sendForm">
+      <input type="text" placeholder="Tip something" v-model="myInput">
+      <button>Send</button>
+    </form>
+    <br>
+    <hr><br>
+    <!--
+          v-model
+                 .lazy - синхронизируется по событию "change", а не "input"
+                 .number - для автоматического приведения введённого пользователем к числу
+                 .trim - автоматическая обрезка пробелов в начале и в конце строки
+
+          v-on:click
+                    .stop - событие click не будет всплывать
+                    .prevent - событие submit больше не будет перезагружать страницу
+                    .capture - режим погружения
+                    .self - вызов обработчика только в случае наступления события непосредственно на данном элементе (то есть не на дочернем компоненте)
+                    .once - событие отработает только один раз
+                    .passive - сообщает браузеру, что не нужно предотвращать поведение по умолчанию для события.
+
+                    .native - подписаться на нативные события браузера на корневом элементе компонента
+
+             *модификаторы можно объединять в цепочки
+             *можно использовать без указания метода-обработчика
+        -->
+
+    <h5>Вычисляемые свойства</h5>
+<!--  результат в консоли  -->
+    <button type="button" @click="printFilteredNews()">Print filtered news</button>
+    <button type="button" @click="changeNews()">add news</button>
+    <br>
+    <hr><br>
+
+    <h5>Методы наблюдения</h5>
+
+    <div>{{ testingWatch }}</div>
+    <button type="button" @click="testingWatch=++testingWatch">change 'testingWatch' value</button>
+    <br>
+    <hr>
+    <br>
+
+    <h5>Компоненты</h5>
+    <h6>в компонентах data должна быть функцией</h6>
+    <btn></btn>
+    <btn name="I'm the second Click me"></btn>
+    <btn name="random it"></btn>
+    <br>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="components/Btn.js"></script>
+  <script src="components/Card.js"></script>
+
+  <script src="main.js"></script>
+
+<!--
+  Вывести превю новостей.
+   - Создать компонент одной новости
+   - вывести циклом новости
+-->
+
+<!--
+  Вывод ТОП аниме
+  - создать метод загрузки данных с апи https://api.jikan.moe/v3/top/anime (метод Fetch https://learn.javascript.ru/fetch)
+      метод вызвать в хуке жизненного цикла created() {}
+  - Создать компоненты:
+      1 - компонент врапер
+      2 - превю аниме, выводим: image_url, title, episodes, url(как ссылку)
+      3 - компонент preloader - показывает пока контент грузится
+        * - обернуть загрузку данных setTimeout для визуальной наглядности прелоадера
+      4 - компонент not found - при отсутствии контента вывести сообщение "ничего не найдено"
+      5 - компонент error - при ошибке вывести "произошла ошибка"
+      6 - компонент кнопка
+  - добавить две кнопки-компонент
+      1 - удаляет данные
+      2 - обратно их загружает
+  - добавить computed для фильтрации аниме:
+      1 - первых 10
+      2 - инверсивный порядок
+      3 - по свойству type = Movie
+      4 - по свойству type = TV
+      5 - привязать их к кнопкам
+  - (необязательно):
+      1 - выводить в превю id аниме (mal_id)
+      2 - создать компонент для ввода id аниме
+      3 - отфильтровать по введенному id
+      4 - кнопка удаления найденного аниме
+-->
+
+</body>
+</html>

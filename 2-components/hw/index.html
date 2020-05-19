@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>the beginning</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 15px;
+        }
+
+        h5 {
+            color: #40b480
+        }
+
+        h6 {
+            font-weight: 400;
+            color: #79b392
+        }
+
+        code {
+            background-color: #f3f3f3;
+            font-style: italic;
+        }
+
+        .flex {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <wrap></wrap>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="components/Btn.js"></script>
+<script src="components/AnimeCard.js"></script>
+<script src="components/CustomError.js"></script>
+<script src="components/Preloader.js"></script>
+<script src="components/Wrap.js"></script>
+
+<script src="main.js"></script>
+
+<!--
+  Вывод ТОП аниме
+  - создать метод загрузки данных с апи https://api.jikan.moe/v3/top/anime (метод Fetch https://learn.javascript.ru/fetch)
+      метод вызвать в хуке жизненного цикла created() {}
+  - Создать компоненты:
+      1 - компонент врапер
+      2 - превю аниме, выводим: image_url, title, episodes, url(как ссылку)
+      3 - компонент preloader - показывает пока контент грузится
+        * - обернуть загрузку данных setTimeout для визуальной наглядности прелоадера
+      4 - компонент not found - при отсутствии контента вывести сообщение "ничего не найдено"
+      5 - компонент error - при ошибке вывести "произошла ошибка"
+      6 - компонент кнопка
+  - добавить две кнопки-компонент
+      1 - удаляет данные
+      2 - обратно их загружает
+  - добавить computed для фильтрации аниме:
+      1 - первых 10
+      2 - инверсивный порядок
+      3 - по свойству type = Movie
+      4 - по свойству type = TV
+      5 - привязать их к кнопкам
+  - (необязательно):
+      1 - выводить в превю id аниме (mal_id)
+      2 - создать компонент для ввода id аниме
+      3 - отфильтровать по введенному id
+      4 - кнопка удаления найденного аниме
+-->
+
+</body>
+</html>
