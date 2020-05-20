@@ -6,6 +6,7 @@ import Contacts from "../views/Contacts.vue";
 import List from "../views/List.vue";
 import Item from "../views/Item.vue";
 import MenuProject from "../views/MenuProject.vue";
+import Album from "../views/Album";
 
 Vue.use(VueRouter)
 
@@ -37,11 +38,51 @@ const routes = [
     {
         path: '/list/:item_id',
         name: 'Item',
+        props: {
+            default: true,
+            navigation: false
+        },
         components: {
             default: Item,
             navigation: MenuProject
-        }
+        },
+        // children: [
+        //     {
+        //         name: 'artist-with-album',
+        //         path: ':id',
+        //         props: true,
+        //         component: Album
+        //     }
+        // ]
     },
+    {
+        path: '/list/:item_id/:id',
+        name: 'Album',
+        props: {
+            default: true,
+            navigation: false
+        },
+        components: {
+            default: Album,
+            navigation: MenuProject
+        },
+    },
+    // {
+    //     path: '/artist-with',
+    //     name: 'artist-with',
+    //     components: {
+    //         default: Item,
+    //         navigation: MenuProject
+    //     },
+    //     children: [
+    //         {
+    //             name: 'artist-with-album',
+    //             path: ':id',
+    //             props: true,
+    //             component: Album
+    //         }
+    //     ]
+    // },
 
     {
         path: '/about',

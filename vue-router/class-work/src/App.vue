@@ -1,16 +1,17 @@
 <template>
   <div id="app">
+    <div>
+      <button @click="showPage(-1)">Prev</button>
+      <button @click="showPage(1)">Next</button>
+    </div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
     </div>
     <router-view name="navigation"></router-view>
-    <router-view/>
-
-    <div>
-      <button @click="showPage(-1)">Prev</button>
-      <button @click="showPage(1)">Next</button>
-    </div>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -20,6 +21,9 @@
       showPage(index) {
         let oldLocation = window.location.href;
         this.$router.go(index);
+         if (oldLocation === window.location.href) {
+           this.$router.go(1);
+         }
       }
     }
   }
