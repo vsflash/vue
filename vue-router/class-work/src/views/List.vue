@@ -23,13 +23,15 @@
         },
         beforeRouteEnter(to, from, next) {
             next(vm => {
-                fetch("http://www.json-generator.com/api/json/get/cuKKbBWWXm?indent=2")
-                    .then(resp => {
-                        return resp.json();
-                    })
-                    .then(result => {
-                        vm.artists = result;
-                    });
+                setTimeout(function() {
+                    fetch("http://www.json-generator.com/api/json/get/cuKKbBWWXm?indent=2")
+                        .then(resp => {
+                            return resp.json();
+                        })
+                        .then(result => {
+                            vm.artists = result;
+                        });
+                }, 100)
             })
         }
     }

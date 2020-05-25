@@ -2,14 +2,15 @@
   <div>
     <h3>{{artist.name}}</h3>
     <div class="row">
-      <div v-for="alb in artist.album" class="col-lg-4">
+      <div v-if="artist.album" v-for="alb in artist.album" class="col-lg-4">
         <router-link
                 :key="alb.index"
                 :to="{name:'Album', params: {item_id: artist.name.replace(' ', '_'), id: alb.name.replace(' ', '_'), album: alb}}"
         >
-          {{alb.name}}
+          {{alb.name}} ({{alb.compositions.length}})
         </router-link>
       </div>
+      <div v-else>Artist have not albums</div>
     </div>
   </div>
 </template>
